@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>[% title %]</title>
+    <meta name="description" content="GR-DOS is a DOS for classic PCs: a fork of the MS-DOS 4.00 source that Microsoft published under the MIT license, from 360 KB floppies to hard disks and CF cards." />
+    <meta property="og:title" content="[% title %]" />
+    <meta property="og:description" content="A DOS for classic PCs, forked from the MS-DOS 4.00 source." />
+    <meta property="og:image" content="https://gr-dos.org/images/gr-dos-social.png" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="text/javascript" src="[% shjs %]/sh_main.min.js"></script>
+    <script type="text/javascript" src="[% shjs %]/lang/sh_perl.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="[% shjs %]/css/sh_acid.css">
+    <link type="text/css" rel="stylesheet" href="[% hatch %]/css/default.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
+    <style>
+      div.nx-header-title { font-family: 'VT323', monospace; font-size: 60px; top: -4px; }
+      .nx-cursor { display: inline-block; width: 0.45em; height: 0.62em; margin-left: calc(0.06em + 0.2ch); background: currentColor; animation: nx-blink 1.06s steps(1) infinite; }
+      @keyframes nx-blink { 50% { visibility: hidden; } }
+      @media (prefers-reduced-motion: reduce) { .nx-cursor { animation: none; } }
+      div.nx-content { max-width: 820px; margin: 0 auto; padding: 0 16px; }
+      div.nx-content img { max-width: 100%; height: auto; }
+      div.nx-nav { text-align: center; margin-bottom: 16px; }
+      div.nx-banner { display: flex; align-items: center; gap: 48px; margin: 0 0 8px; }
+      div.nx-banner img { min-width: 0; width: 100%; }
+      div.nx-banner figure { margin: 0; min-width: 0; }
+      div.nx-banner figcaption { font-size: 0.8em; text-align: center; color: #666666; }
+      @media (prefers-color-scheme: dark) { div.nx-banner figcaption { color: #aaaaaa; } }
+      @media (max-width: 600px) {
+        div.nx-header-title { font-size: 44px; }
+        div.nx-banner { flex-direction: column; gap: 16px; }
+        div.nx-banner > * { width: 80%; }
+      }
+    </style>
+  </head>
+  <body onload="sh_highlightDocument();">
+    <div class="nx-header-flag-1"></div>
+    <div class="nx-header-flag-2"></div>
+    <div class="nx-header-title"><a href="/"><img src="/images/gr-dos-floppy-icon.png" alt="GR-DOS home" style="height: 0.8em; width: auto; vertical-align: -0.05em;" border="0" /></a> [% IF sub %]<a href="[% sub.href %]">[% sub.text %]</a> [% END %][% heading = h1 ? h1 : title %][% heading %][% IF heading == 'GR-DOS' %]<span class="nx-cursor" aria-hidden="true"></span>[% END %]</div>
+    <div class="nx-content">
+      <div class="nx-nav">
+        [ <a href="/">home</a> | <a href="https://github.com/gr-dos/gr-dos/releases/latest">download</a> | <a href="https://github.com/gr-dos/gr-dos/tree/main/docs">documentation</a> | <a href="https://github.com/gr-dos">source</a> ]
+      </div>
+      <div class="nx-banner">
+        <img src="/images/gr-dos-floppy.png" alt="The GR-DOS logo: a black 5.25-inch floppy disk with a worn paper label hand-lettered GR-DOS" width="640" height="640" style="flex: 572 1 0;" border="0" />
+        <figure style="flex: 800 1 0;">
+          <img src="/images/gr-dos-screen-crt.png" alt="A beige CRT monitor showing GR-DOS running VER, which prints GR-DOS Version 4.00, and DIR /W listing the files on the boot floppy" width="800" height="572" border="0" />
+          <figcaption>GR-DOS 0.04, booted from its 1.44 MB floppy image in QEMU</figcaption>
+        </figure>
+      </div>
+      [% content %]
+    </div>
+    <div class="nx-footer">
+      <p>
+        [%- IF site.links %]
+        [
+          [%- FOR link IN site.links %]
+            <a href="[% link.href | url %]">[% link.name %]</a>[% UNLESS loop.last %] |[% END %]
+          [%- END %]
+        ]
+        [%- END %]
+        Copyright &copy; 2026 Graham Ollis
+      </p>
+    </div>
+  </body>
+</html>
